@@ -1,12 +1,13 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post, Group
 from django.conf import settings
+from django.shortcuts import get_object_or_404, render
+
+from .models import Group, Post
 
 
 # Главная страница
 def index(request):
     template = 'posts/index.html'
-    title = 'Последние обновления на сайте'
+    title = 'posts/index.html'
     # Сортировка постов по полю pub_date по убыванию.
     posts = Post.objects.all()[:settings.PAGE_LIMIT]
     context = {
@@ -22,7 +23,7 @@ def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     # Сортировка постов по полю pub_date по убыванию.
     posts = group.posts.all()[:settings.PAGE_LIMIT]
-    group_list_title = 'Записи сообщества ' + group.title
+    group_list_title = 'posts/group_list.html'
     context = {
         'group': group,
         'posts': posts,

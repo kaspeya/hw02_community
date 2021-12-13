@@ -20,6 +20,5 @@ from django.urls import include, path
 urlpatterns = [
     # импорт правил из приложения posts
     path('', include('posts.urls', namespace='posts')),
-    path('group/<slug>/', include('posts.urls', namespace='group')),
     path('admin/', admin.site.urls),
 ]

@@ -15,7 +15,9 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Подключен файл со стандартными стилями бустрап -->
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <title>{{ title }}</title>
+    {% block title %}
+      Заголовок
+    {% endblock %}
   </head>
   <body>
     <header>
