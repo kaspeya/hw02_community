@@ -7,11 +7,9 @@ from .models import Group, Post
 # Главная страница
 def index(request):
     template = 'posts/index.html'
-    title = 'posts/index.html'
     # Сортировка постов по полю pub_date по убыванию.
     posts = Post.objects.all()[:settings.PAGE_LIMIT]
     context = {
-        'title': title,
         'posts': posts,
     }
     return render(request, template, context)
@@ -23,10 +21,8 @@ def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     # Сортировка постов по полю pub_date по убыванию.
     posts = group.posts.all()[:settings.PAGE_LIMIT]
-    group_list_title = 'posts/group_list.html'
     context = {
         'group': group,
         'posts': posts,
-        'title': group_list_title,
     }
     return render(request, template, context, slug)
