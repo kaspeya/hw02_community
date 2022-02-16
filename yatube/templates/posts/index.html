@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
- <title>Последние обновления на сайте</title>
+  <title>Последние обновления на сайте</title>
 {% endblock %}
 
 {% block content %}
   <h1>Последние обновления на сайте</h1>
-  {% for post in posts %}
+  {% for post in page_obj %}
     <ul>
       <li>
         Автор: {{ post.author.get_full_name }}
@@ -21,5 +21,6 @@
       <a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group.title }}</a>
     {% endif %}
     {% if not forloop.last %}<hr> {% endif %}
-{% endfor %}
+  {% endfor %}
+  {% include 'includes/paginator.html' %}
 {% endblock %}

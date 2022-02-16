@@ -21,4 +21,5 @@
     <p>{{ post.text|linebreaksbr }}</p>
       {% if not forloop.last %}<hr>{% endif %}
     {% endfor %}
+  {% include 'includes/paginator.html' %}
 {% endblock %}

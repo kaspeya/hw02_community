@@ -32,7 +32,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+		'about.apps.AboutConfig',
     'posts.apps.PostsConfig',
+    'users.apps.UsersConfig',
+    'core.apps.CoreConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.year.year',
             ]
         },
     }
@@ -109,6 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'Europe/Moscow'
 
@@ -125,3 +130,18 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 PAGE_LIMIT = 10
+
+LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'posts:index'
+LOGOUT_REDIRECT_URL = ''
+PASSWORD_CHANGE_URL = 'users:password_change'
+PASSWORD_CHANGE_REDIRECT_URL = 'users:password_change_done'
+PASSWORD_RESET_URL = 'users:password_reset'
+PASSWORD_RESET_REDIRECT_URL = 'users:password_reset_done'
+PASSWORD_RESET_CONFIRM_URL = 'users:password_reset_confirm'
+PASSWORD_RESET_CONFIRM_REDIRECT_URL = 'users:password_reset_complete'
+POST_EDIT_REDIRECT_URL = 'posts:post_detail'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
